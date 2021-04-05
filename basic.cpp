@@ -1,7 +1,12 @@
 #include <iostream>
 using namespace std;
-
-class Employee{
+class AbstractEmployee{
+    /*Abstract class with pure virtual function:
+    This function should be implemented in every class 
+    that inherits it.*/
+    virtual void askForPromotion() = 0;
+};
+class Employee : AbstractEmployee{
     private:
     string Name;
     string Company;
@@ -39,15 +44,17 @@ int getAge(){
         Company = company;
         Age = age;
     }
+    void askForPromotion(){
+        if (Age >= 30)
+        cout<< Name << " got promoted!" <<endl;
+        else cout << Name << ", sorry No promotion for you!" <<endl;
+    }
 };
 
 int main() {
     Employee employee1 = Employee("Sam", "Liquid-Telecoms", 25);
-    employee1.introduceYourself();
-
     Employee employee2 = Employee("John", "Amazon", 35);
-    employee2.introduceYourself();
+    employee2.askForPromotion();
+    employee1.askForPromotion();
 
-    employee2.setAge(42); //testing the setters and getters
-    cout<< employee2.getName() << " is " << employee2.getAge() <<" years old." <<endl;
 }
